@@ -10,10 +10,16 @@ module Problems1_10 where
  - Prelude> myLast ['x','y','z']
  - 'z'
  -}
+ 
+xs = [1,2..10]
+
 myLast ([]) = error "Empty List"
 myLast (x:[]) = x
 myLast (_:xs) = myLast xs
 
+last' xs = head (drop (length xs - 1) xs )
+last2 xs = head (reverse xs)
+last3 xs = xs !! (length xs -1)
 -- TESTs
 --problem1 :: Test.Framework.Test
 --problem1 = testGroup "problem 1" [
@@ -31,7 +37,10 @@ myLast (_:xs) = myLast xs
  - Prelude> myButLast ['a'..'z']
  - 'y'
  -}
-
+myButLast [] = error "empty list"
+myButLast [x] = error "too small list, need two or more elements"
+myButLast (x:y:[]) = x
+myButLast (_:xs) = myButLast xs 
 
 --problem2 :: Test.Framework.Test
 --problem2 = testGroup "problem 2" [
